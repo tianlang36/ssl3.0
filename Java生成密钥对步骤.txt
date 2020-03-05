@@ -1,0 +1,8 @@
+Java生成自签密钥对的步骤：
+1、生成一个密钥对，并存储在keystore库中。以别名的方式存放对应的密钥对，一个别名对应一个。
+   如果是第一次将要求设置keystore库的密码，密钥的主密码可以和keystore密码相同，也可以不同。
+   keytool -genkey -alias ${自定义别名} -keyalg RSA -keysize 1024 [-sigalg SHA1withRSA -validity 365]
+2、产生自签证书
+   keytool -selfcert -alias ${自定义别名} -keyalg RSA -keysize 1024 [-sigalg SHA1withRSA -validity 365]
+3、导出自签证书
+   keytool -export -rfc -alias ${自定义别名} -file ${自定证书名称.crt}
